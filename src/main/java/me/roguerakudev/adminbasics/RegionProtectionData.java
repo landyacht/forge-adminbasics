@@ -10,9 +10,7 @@ import net.minecraft.world.storage.WorldSavedData;
 import org.apache.logging.log4j.LogManager;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 public class RegionProtectionData extends WorldSavedData {
     private static final String IDENTIFIER = "AB_RGN_PRTCN";
@@ -104,5 +102,10 @@ public class RegionProtectionData extends WorldSavedData {
         DimensionSavedDataManager savedDataManager = ((ServerWorld) world).getSavedData();
         RegionProtectionData result = savedDataManager.getOrCreate(RegionProtectionData::new, IDENTIFIER);
         return result;
+    }
+
+    static void saveForWorld(World world) {
+        DimensionSavedDataManager savedDataManager = ((ServerWorld) world).getSavedData();
+        savedDataManager.save();
     }
 }

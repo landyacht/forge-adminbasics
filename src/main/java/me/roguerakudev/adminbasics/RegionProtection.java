@@ -21,6 +21,7 @@ import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -158,6 +159,11 @@ public class RegionProtection {
                 }
             });
         }
+    }
+
+    @SubscribeEvent
+    public static void onWorldUnload(WorldEvent.Unload event) {
+        RegionProtectionData.saveForWorld(event.getWorld().getWorld());
     }
 
     /* --------- COMMANDS SECTION --------- */
